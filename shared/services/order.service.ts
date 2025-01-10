@@ -46,7 +46,7 @@ export class OrderService {
     orders.push({
       created: (new Date()).toDateString(),
       address,
-      cart,
+      cart: cart?.filter((item) => !!item.cartCount),
     });
     localStorage.setItem('orders', JSON.stringify(orders));
     localStorage.setItem('cart', JSON.stringify([]));
