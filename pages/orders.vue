@@ -20,7 +20,7 @@ onMounted(async () => {
 
 <template>
   <div class="cart">
-    Заказы
+    <h2>Заказы</h2>
     <div
       v-if="orders?.length"
       class="orders"

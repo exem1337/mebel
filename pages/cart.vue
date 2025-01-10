@@ -32,7 +32,7 @@ onMounted(async () => {
 
 <template>
   <div class="cart">
-    Корзина
+    <h2>Корзина</h2>
     <div
       v-if="cart?.length"
       class="products"
@@ -66,8 +66,10 @@ onMounted(async () => {
           <input type="number" v-model="item.cartCount" min="0">
         </div>
       </div>
-      <textarea placeholder="Адрес доставки" v-model="address" />
-      <button @click="onOrder">Заказать</button>
+      <div class="actions">
+        <textarea placeholder="Адрес доставки" v-model="address" />
+        <button @click="onOrder">Заказать</button>
+      </div>
     </div>
     <div v-else>
       Корзина пустая
@@ -76,6 +78,18 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
+.actions {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  gap: 20px;
+
+  textarea {
+    min-height: 56px;
+    width: 400px;
+  }
+}
+
 .products {
   margin-top: 40px;
 
