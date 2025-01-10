@@ -72,21 +72,24 @@ onMounted(() => {
     <input v-model="price" type="number" placeholder="Цена, ₽" min="0">
     <input v-model="width" type="number" placeholder="Ширина, см" min="0">
     <input v-model="height" type="number" placeholder="Высота, см" min="0">
-    <select v-model="color" name="select">
+    <label for="color">Цвет</label>
+    <select id="color" v-model="color" name="select">
       <option
         v-for="item in COLOR_OPTIONS"
         :key="item"
         :value="item">{{ item }}
       </option>
     </select>
-    <select v-model="material" name="select">
+    <label for="material">Материал</label>
+    <select id="material" v-model="material" name="select">
       <option
         v-for="item in MATERIAL_OPTIONS"
         :key="item"
         :value="item">{{ item }}
       </option>
     </select>
-    <select v-model="manufactorer" name="select">
+    <label for="manufactorer">Производитель</label>
+    <select id="manufactorer" v-model="manufactorer" name="select">
       <option
         v-for="item in MANUFACTURERS_OPTIONS"
         :key="item"

@@ -5,8 +5,10 @@ const login = ref<string>();
 const password = ref<string>();
 const store = useUserStore();
 const router = useRouter();
+const errormessage = ref();
 
 async function onLogin(): Promise<void> {
+  errormessage.value = false;
   const { data: user } = await useFetch('/api/auth', {
     method: 'POST',
     body: {
@@ -14,9 +16,13 @@ async function onLogin(): Promise<void> {
       password: password.value,
     }
   });
-  if (user) {
-    store.setUser(user);
+  console.log(user)
+  if (user.value?.role) {
+    store.setUser(user.value);
     await router.push('/');
+  }
+  else {
+    errormessage.value = true;
   }
 }
 </script>
@@ -26,6 +32,7 @@ async function onLogin(): Promise<void> {
     Авторизация
     <input v-model="login" type="email" placeholder="Логин">
     <input v-model="password" type="password" placeholder="Пароль">
+    <p v-if="errormessage">Введен некорректный логин или пароль</p>
     <button @click="onLogin">Войти</button>
   </div>
 </template>
@@ -40,6 +47,10 @@ async function onLogin(): Promise<void> {
   border: 1px solid gray;
   border-radius: 8px;
   font-size: 14px;
+
+  p {
+    color: red;
+  }
 
   input {
     min-height: 40px;

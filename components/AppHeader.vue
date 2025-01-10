@@ -14,12 +14,13 @@ async function onLogout(): Promise<void> {
 <template>
   <header class="header">
     <NuxtLink href="/">Мебельный салон</NuxtLink>
+    <NuxtLink href="/">Главная</NuxtLink>
     <div v-if="store.user?.role">
       <NuxtLink v-if="store.user?.role === UserRoleEnum.Buyer" href="cart">Корзина</NuxtLink>
       <NuxtLink v-if="store.user?.role === UserRoleEnum.Admin" href="orders">Заказы</NuxtLink>
       <span>
         {{ store.user?.lastname }} {{ store.user?.firstname }} {{ store.user?.patronymic }}
-        {{ store.user.role === UserRoleEnum.Buyer ? 'Покупатель' : 'Администратор' }}
+        ({{ store.user.role === UserRoleEnum.Buyer ? 'Покупатель' : 'Администратор' }})
       </span>
       <button @click="onLogout">Выйти</button>
     </div>
